@@ -71,7 +71,7 @@ Playful-Home/
 ├── INTERACTION_PATTERNS.md      ← Scene interaction reference
 ├── DEVELOPMENT_JOURNEY.md       ← Full development story
 │
-├── PlaytestV1/                  ← Active unified system
+├── Firmware/                    ← Arduino sketches + Python middleware
 │   ├── wobble_unified_processor.py   ← Python middleware (main program)
 │   ├── Transmitter_Purple.ino        ← Firmware: purple Wobble
 │   ├── Receiver1_Copper.ino          ← Firmware: copper Wobble
@@ -83,7 +83,10 @@ Playful-Home/
 │       ├── Receiver1_Copper_B.ino
 │       └── Receiver2_White_B.ino
 │
-└── wobble_dashboard/            ← Next.js web dashboard
+├── VCV Patch/                   ← VCV Rack audio patch
+│   └── PlayfulHome_AudioPatch.vcv
+│
+└── Web-Dashboard/               ← Next.js web dashboard
     ├── app/                     ← Pages (live view + /trends)
     ├── components/              ← UI components
     ├── hooks/                   ← Data hooks (WebSocket + Supabase)
@@ -116,7 +119,7 @@ See [INTERACTION_PATTERNS.md](INTERACTION_PATTERNS.md) for full details.
 pip install python-osc python-dotenv supabase
 
 # 3. Run the middleware
-cd PlaytestV1
+cd Firmware
 python3 wobble_unified_processor.py
 ```
 
@@ -129,7 +132,7 @@ See [INSTALLATION.md](INSTALLATION.md) for complete setup instructions.
 A live Next.js dashboard shows Wobble states, session activity, and historical trends via Supabase.
 
 ```bash
-cd wobble_dashboard
+cd Web-Dashboard
 npm install
 npm run dev
 ```

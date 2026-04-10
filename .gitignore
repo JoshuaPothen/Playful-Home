@@ -6,11 +6,11 @@ __pycache__/
 .env.*
 
 # Node / Next.js
-wobble_dashboard/node_modules/
-wobble_dashboard/.next/
-wobble_dashboard/.vercel/
-wobble_dashboard/next-env.d.ts
-wobble_dashboard/*.tsbuildinfo
+Web-Dashboard/node_modules/
+Web-Dashboard/.next/
+Web-Dashboard/.vercel/
+Web-Dashboard/next-env.d.ts
+Web-Dashboard/*.tsbuildinfo
 
 # macOS
 .DS_Store

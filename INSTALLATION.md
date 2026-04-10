@@ -48,13 +48,13 @@ IPAddress host(192, 168, X, X);  // IP of the machine running Python
 ### Flash Each Board
 | Board | File |
 |-------|------|
-| Purple Wobble (Transmitter) | `PlaytestV1/Transmitter_Purple.ino` |
-| Copper Wobble (Receiver 1) | `PlaytestV1/Receiver1_Copper.ino` |
-| White Wobble (Receiver 2) | `PlaytestV1/Receiver2_White.ino` |
+| Purple Wobble (Transmitter) | `Firmware/Transmitter_Purple.ino` |
+| Copper Wobble (Receiver 1) | `Firmware/Receiver1_Copper.ino` |
+| White Wobble (Receiver 2) | `Firmware/Receiver2_White.ino` |
 
 Select **Adafruit QT Py ESP32-S3** as the board before uploading.
 
-> **Backup boards:** If you have secondary/backup hardware, use the `.ino` files in `PlaytestV1/Backup/`.
+> **Backup boards:** If you have secondary/backup hardware, use the `.ino` files in `Firmware/Backup/`.
 
 ---
 
@@ -68,7 +68,7 @@ pip install python-osc python-dotenv supabase
 ### Configure Hue Lights
 1. Install OpenHue CLI and connect it to your Hue Bridge (follow [OpenHue docs](https://github.com/openhue/openhue-cli)).
 2. Find your bulb IDs with `openhue get lights`.
-3. Open `PlaytestV1/wobble_unified_processor.py` and update:
+3. Open `Firmware/wobble_unified_processor.py` and update:
 
 ```python
 HUE_LIGHTS = [
@@ -81,7 +81,7 @@ HUE_ROOM_ID = "your-room-id"
 ```
 
 ### Configure Supabase (Optional — for session tracking)
-Create a `.env` file in `PlaytestV1/`:
+Create a `.env` file in `Firmware/`:
 ```
 SUPABASE_URL=https://your-project.supabase.co
 SUPABASE_SERVICE_KEY=your-service-key
@@ -90,12 +90,12 @@ SUPABASE_SERVICE_KEY=your-service-key
 Apply the schema:
 ```bash
 # Run in Supabase SQL editor or via psql
-cat PlaytestV1/supabase_schema.sql
+cat Firmware/supabase_schema.sql
 ```
 
 ### Run
 ```bash
-cd PlaytestV1
+cd Firmware
 python3 wobble_unified_processor.py
 ```
 
@@ -105,11 +105,11 @@ A Tkinter GUI will appear with scene buttons, a live dashboard, and an event log
 
 ## Step 3: VCV Rack
 
-1. Open VCV Rack and load or create a patch.
-2. Add an OSC receiver module and configure it to listen on:
+1. Open VCV Rack and load `VCV Patch/PlayfulHome_AudioPatch.vcv`.
+2. Ensure the OSC receiver module is configured to listen on:
    - **Port 8010** — Scene 1 & 2 sensor data
    - **Port 8011** — Scene 0 sensor data
-3. Map the incoming OSC addresses:
+3. OSC addresses used:
 
 | Address | Scene | Description |
 |---------|-------|-------------|
@@ -128,7 +128,7 @@ A Tkinter GUI will appear with scene buttons, a live dashboard, and an event log
 ## Step 4: Web Dashboard (Optional)
 
 ```bash
-cd wobble_dashboard
+cd Web-Dashboard
 npm install
 ```
 
@@ -157,7 +157,7 @@ Proximity thresholds can be tuned from the GUI's **Settings** panel without rest
 | Far threshold | 2.0 m | Distance above which a Wobble is "far" (Scene 1) |
 | Hysteresis | 0.15 m | Buffer to prevent threshold flickering |
 
-Settings are saved to `PlaytestV1/config.json` via the **Save** button.
+Settings are saved to `Firmware/config.json` via the **Save** button.
 
 ---
 
