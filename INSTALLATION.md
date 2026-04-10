@@ -106,22 +106,26 @@ A Tkinter GUI will appear with scene buttons, a live dashboard, and an event log
 ## Step 3: VCV Rack
 
 1. Open VCV Rack and load `VCV Patch/PlayfulHome_AudioPatch.vcv`.
-2. Ensure the OSC receiver module is configured to listen on:
-   - **Port 8010** — Scene 1 & 2 sensor data
-   - **Port 8011** — Scene 0 sensor data
+2. Ensure the OSC receiver module is configured to listen on **Port 8010**.
 3. OSC addresses used:
 
-| Address | Scene | Description |
-|---------|-------|-------------|
-| `/r1/accel/x,y,z` | 1 & 2 | Receiver 1 accelerometer |
-| `/r1/gyro/x,y,z` | 1 & 2 | Receiver 1 gyroscope |
-| `/r2/accel/x,y,z` | 1 & 2 | Receiver 2 accelerometer |
-| `/r2/gyro/x,y,z` | 1 & 2 | Receiver 2 gyroscope |
-| `/s0/r1/accel/x,y,z` | 0 | Scene 0 Receiver 1 accel |
-| `/s0/r1/gyro/x,y,z` | 0 | Scene 0 Receiver 1 gyro |
-| `/s0/mute` | 0 | 1 = Scene 0 active |
-| `/s2/r1/mute` | 2 | 1 = Receiver 1 isolated |
-| `/s2/r2/mute` | 2 | 1 = Receiver 2 isolated |
+**All scenes — sensor data (always active):**
+
+| Address | Description |
+|---------|-------------|
+| `/r1/accel/x,y,z` | Receiver 1 accelerometer |
+| `/r1/gyro/x,y,z` | Receiver 1 gyroscope |
+| `/r2/accel/x,y,z` | Receiver 2 accelerometer |
+| `/r2/gyro/x,y,z` | Receiver 2 gyroscope |
+| `/tx/accel/x,y,z` | Transmitter accelerometer |
+| `/tx/gyro/x,y,z` | Transmitter gyroscope |
+
+**Scene 2 only — isolation state:**
+
+| Address | Description |
+|---------|-------------|
+| `/s2/r1/mute` | 1 = Receiver 1 isolated, 0 = not isolated |
+| `/s2/r2/mute` | 1 = Receiver 2 isolated, 0 = not isolated |
 
 ---
 
@@ -170,8 +174,7 @@ Settings are saved to `Firmware/config.json` via the **Save** button.
 | 8004 | IN | Receiver 1 (Copper) — sensors |
 | 8005 | IN | Transmitter (Purple) — sensors |
 | 8006 | IN | Receiver 2 (White) — sensors |
-| 8010 | OUT | Python → VCV Rack (Scene 1 & 2) |
-| 8011 | OUT | Python → VCV Rack (Scene 0) |
+| 8010 | OUT | Python → VCV Rack (all scenes) |
 
 Backup board ports follow the same pattern on 8101/8102/8104/8105/8106.
 
@@ -196,5 +199,5 @@ Backup board ports follow the same pattern on 8101/8102/8104/8105/8106.
 - Keep the Transmitter (purple) stationary during calibration.
 
 **VCV Rack not receiving data**
-- Check firewall isn't blocking UDP ports 8010/8011.
-- Confirm the OSC receiver module is set to the correct port.
+- Check firewall isn't blocking UDP port 8010.
+- Confirm the OSC receiver module is set to port 8010.
