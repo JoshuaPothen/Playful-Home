@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+.env.*
+
+# Node / Next.js
+wobble_dashboard/node_modules/
+wobble_dashboard/.next/
+wobble_dashboard/.vercel/
+wobble_dashboard/next-env.d.ts
+wobble_dashboard/*.tsbuildinfo
+
+# macOS
+.DS_Store
+
+# Secrets
+*.pem

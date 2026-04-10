@@ -1,0 +1,8 @@
+{
+  "close_threshold": 0.5,
+  "far_threshold": 1.7,
+  "hysteresis": 0.2,
+  "wobble_active_threshold": 0.6,
+  "wobble_idle_threshold": 0.2,
+  "session_timeout_s": 10.0
+}
